@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<!--<script type="text/javascript" src="d3.min.js"></script>-->
+	<script src="http://d3js.org/d3.v3.js"></script>
+  </head>
+  <body>
+    <p>Hello!</p>
+	<script type="text/javascript">
+
+		var body = d3.select("body");
+		var svg = body.append("svg")
+				.attr("width",250)
+				.attr("height",450);
+
+		var radiusData = [10, 15, 20, 25, 30];
+		var y = 15
+		radiusData.map(function (r) {
+				var circle = svg.append("circle")
+						.attr("cx",100)
+						.attr("cy",y)
+						.attr("r",r)
+						.style("fill","purple");		
+				y += 60;
+		});
+
+		// By calling .data() in a method chain, D3 iterates over the data array 
+		// and returns the present value to methods down the chain. 
+		// This allows us to use values from the array with other methods, like .style().
+		var colors = ["gray", "blue", "green", "red", "purple"];
+		body.selectAll("circle")
+		  .data(colors)
+		  .style("fill", function(d){return d});
+	</script>
+  </body>
+</html>

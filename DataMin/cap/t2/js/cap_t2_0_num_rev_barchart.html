@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+
+<style>
+
+.chart rect {
+  fill: steelblue;
+}
+
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+</style>
+
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<svg class="chart"></svg>
+
+
+<script>
+
+		// the range becomes [height, 0] rather than [0, width]. This is because the origin of SVG’s
+		// coordinate system is in the top-left corner.
+		// We want the zero-value to be positioned at the bottom of the chart, rather than the top.
+
+		var margin = {top: 20, right: 20, bottom: 90, left: 70},
+			width = 960 - margin.left - margin.right,
+			height = 500 - margin.top - margin.bottom; 
+
+		// an ordinal scale is a mapping from a discrete set of data values (such as names) 
+		// to a corresponding discrete set of display values (such as pixel positions). 
+		// Like quantitative scales these sets are called the domain and range, respectively
+		var x = d3.scale.ordinal()
+			.rangeRoundBands([0, width], .1);
+
+		var y = d3.scale.log()  // domain specified after reading the dataset
+			.range([height, 0]);
+
+		var xAxis = d3.svg.axis()
+			.scale(x)
+			.orient("bottom");
+
+		var yAxis = d3.svg.axis()
+			.scale(y)
+			.orient("left")
+			// format the numbers so it doesnt show exponential notation
+			.tickFormat(function (d) { return y.tickFormat(4,d3.format(",d"))(d) });
+
+		// To apply the margins to the SVG container, we set the width and height of the SVG
+		// element to the outer dimensions, and add a g element to offset the origin of the
+		// chart area by the top-left margin. 
+		var chart = d3.select(".chart")
+			.attr("width", width + margin.left + margin.right)
+			.attr("height", height + margin.top + margin.bottom)
+		  .append("g")
+			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+		d3.text("../data/all/num_rev_per_cat.txt", function(error, text) {
+			// file contains no column titles 
+			// just the id and the counter in each row
+			var data = []
+			d3.csv.parseRows(text).forEach(function(row){
+			  	var a = row[0].split(':');
+				var r = {name: a[0], value: +a[1]};
+				data.push(r);			
+			});
+
+			x.domain(data.map(function(d) { return d.name; }));
+			y.domain([d3.min(data, function(d) { return d.value; }), 
+					  d3.max(data, function(d) { return d.value; })])
+			 .nice(); // add a round number at the ends of the scale
+
+			// The xAxis object can be used to render multiple axes by repeated application
+			// using selection.call. Think of it as a rubber stamp which can print out axes wherever
+			// they are needed. The axis elements are positioned relative to a local origin, so to
+			// transform into the desired position we set the "transform" attribute on a containing
+			// g element:
+			chart.append("g")
+				.attr("class", "x axis")
+				.attr("transform", "translate(0," + height + ")")
+				.call(xAxis)
+				.selectAll("text")
+			        .style("text-anchor", "end")
+				    .attr("dx", "-.8em")
+				    .attr("dy", ".15em")
+					.attr("transform", " rotate(-45)");
+
+			chart.append("g")
+				.attr("class", "y axis")
+				.call(yAxis)
+				.append("text")
+					.attr("transform", "rotate(-90)")
+					.attr("y", -60)
+					.attr("dy", "0.1em")
+					.attr("x", -200)
+					.style("text-anchor", "top")
+					.text("Frequency");
+
+		  chart.selectAll(".bar")
+			  .data(data)
+			.enter().append("rect")
+			  .attr("class", "bar")
+			  .attr("x", function(d) { return x(d.name); })
+			  .attr("y", function(d) { return y(d.value); })
+			  .attr("height", function(d) { return height - y(d.value); })
+			  .attr("width", x.rangeBand()-1)
+			  .style("fill", function (d) {return (d.value>1000) ?'steelblue' :'grey'})
+
+		});
+
+</script>

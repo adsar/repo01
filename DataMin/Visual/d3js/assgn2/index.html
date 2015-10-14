@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script src="http://d3js.org/d3.v3.js"></script>
+
+<style>
+	path.link {
+	  fill: none;
+	  stroke: #666;
+	  stroke-width: .5px;
+	}
+
+	path.link.twofive {
+	  opacity: 0.05;
+	}
+
+	path.link.fivezero {
+	  opacity: 0.50;
+	}
+
+	path.link.sevenfive {
+	  opacity: 0.75;
+	}
+
+	path.link.onezerozero {
+	  opacity: 1.0;
+	}
+
+
+	circle {
+	  fill: #ccc;
+	  stroke: #fff;
+	  stroke-width: 1.5px;
+	}
+
+	text {
+	  fill: #000;
+	  font: 10px sans-serif;
+	  font-weight: bold;
+	  pointer-events: none;
+	}
+
+    .legend {
+            	font: 13px sans-serif;
+            	font-weight: bold;
+    }
+
+           .title {
+            	font: 15px sans-serif;
+            	font-weight: bold;
+            }
+</style>
+
+<body>
+
+<script>
+	// get the data
+	d3.tsv("./polbooks.tsv", function(error, links) {
+
+	var nodes = {};
+	// This will contain our data for our nodes, it’s just link information. 
+
+	// Compute the distinct nodes from the links.
+	links.forEach(function(link) {
+		link.source = nodes[link.source] || 
+		    (nodes[link.source] = {name: link.source, value: link.source_val});
+		link.target = nodes[link.target] || 
+		    (nodes[link.target] = {name: link.target, value: link.target_val});
+		link.value = +link.value;
+	});
+// for each link adds it as a node if it hasn’t seen it before. It’s quite clever how it works as it employs a neat JavaScript shorthand method using the double pipe (||) identifier.
+// can be thought of as saying “If link.source does not equal any of the nodes values then create a new element in the nodes object with the name of the link.source value being considered.”
+
+// size of our svg area 
+	var width = 1200,
+		height = 1000;
+
+// sets our layout to the array of nodes as returned by the function d3.values
+// .links(links) does for links what .nodes did for nodes.
+// .size([width, height]) sets the available layout size to our predefined values. If we were using gravity as a force in the graph this would also set the gravitational centre. It also sets the initial random position for the elements of our graph.
+// .linkDistance(60) sets the target distance between linked nodes. As the graph begins and moves towards a steady state, the distance between each pair of linked nodes is computed and compared to the target distance; the links are then moved towards or away from each other, so as to converge on the set distance. Setting this value (and other force values) can be something of a balancing act. 
+// .charge(-300) sets the force between nodes. Negative values of charge results in node repulsion, while a positive value results in node attraction.
+// .on("tick", tick) runs the animation of the force layout one ‘step’. It’s this progression of steps that gives the force layout diagram it’s fluid movement.
+// .start(); Starts the simulation; this method must be called when the layout is first created.
+	var force = d3.layout.force()
+		.nodes(d3.values(nodes))
+		.links(links)
+		.size([width, height])
+		.linkDistance(180)
+		.charge(-1500)
+		.gravity(0.6)
+		.on("tick", tick)
+		.start();
+
+	// the block below uses a cascading set of if statements to assign a label to the type parameter of each link. This label is the linkage back to the styles we defined previously.
+	var	v = d3.scale.linear().range([0, 100]);
+	v.domain([0, d3.max(links, function(d) { return d.value; })]);
+	links.forEach(function(link) {
+		if (v(link.value) <= 25) {
+			link.type = "twofive";
+		} else if (v(link.value) <= 50 && v(link.value) > 25) {
+			link.type = "fivezero";
+		} else if (v(link.value) <= 75 && v(link.value) > 50) {
+			link.type = "sevenfive";
+		} else if (v(link.value) <= 100 && v(link.value) > 75) {
+			link.type = "onezerozero";
+		}
+	});
+
+// sets up our svg container
+	var svg = d3.select("body").append("svg")
+		.attr("width", width)
+		.attr("height", height);
+
+	// build the arrow (requires svg expertise to be understood)
+//	svg.append("svg:defs").selectAll("marker")
+//		.data(["end"])      // Different link/path types can be defined here
+//	  .enter().append("svg:marker")    // This section adds in the arrows
+//		.attr("id", String)
+//		.attr("viewBox", "0 -5 10 10")
+//		.attr("refX", 15)
+//		.attr("refY", -1.5)
+//		.attr("markerWidth", 6)
+//		.attr("markerHeight", 6)
+//		.attr("orient", "auto")
+//		.append("svg:path")
+//		.attr("d", "M0,-5L10,0L0,5");
+// The .data(["end"]) line sets a tag (marker) for a future part of the script to find this block and draw the arrowhead.
+// .attr("refX", 15) sets the offset of the arrow from the centre of the circle. While it is designated as the X offset, because the object is rotating, it doesn’t correspond to the x (left and right) axis of the screen. The same is true of the .attr("refY", -1.5) line.
+// The .attr("markerWidth", 6) and .attr("markerHeight", 6) lines set the bounding box for the arrowhead marker. So varying these will vary the space available for the arrowhead marker.
+
+
+	// add the links as paths and uses the #end marker to draw the arrowhead on the end of the link.
+	var path = svg.append("svg:g").selectAll("path")
+		.data(force.links())
+		.enter().append("svg:path")
+	    .attr("class", function(d) { return "link " + d.type; })
+		.attr("marker-end", "url(#end)");
+
+
+	var color_array = {};
+	color_array["c"] = "red";
+	color_array["n"] = "green";
+	color_array["l"] = "blue";
+
+	// define the nodes
+// uses the nodes data and adds the .call(force.drag); function which allows the node to be dragged by the mouse.
+// The single click will enlarge the node and the associated text and the double click will return the node and test to its original size. 
+	var node = svg.selectAll(".node")
+		.data(force.nodes())
+		.enter().append("g")
+		.attr("class", "node")
+		.on("click", click)        // Add in this line
+		.on("dblclick", dblclick)  // Add in this line too
+		.call(force.drag);
+	node.append("text")
+		.attr("x", 12)
+		.attr("dy", ".35em")
+		.text(function(d) { return d.name; })
+		.style("font-weight", "bold");
+	node.append("circle")
+		.attr("r", 5)
+        .style("fill", function(d) { return color_array[d.value]; });
+
+
+	// function  responsible for updating the graph
+    // and also draw the curvy lines between nodes.
+// code that sets the x and y points for the ends of each link (d.source.x, d.source.y for the start of the curve and d.target.x, d.target.y for the end of the curve) 
+// a transformation for the node points, 
+// the cleverness is in the combination of the math for the radius of the curve (dr = Math.sqrt(dx * dx + dy * dy);) and the formatting of the svg associated with it.
+// This is sadly beyond the scope of what I can comfortable explain, so we will have to be content with “the magic happens here”.
+	function tick() {
+		path.attr("d", function(d) {
+		    var dx = d.target.x - d.source.x,
+		        dy = d.target.y - d.source.y,
+		        dr = Math.sqrt(dx * dx + dy * dy);
+		    return "M" + 
+		        d.source.x + "," + 
+		        d.source.y + "A" + 
+		        dr + "," + dr + " 0 0,1 " + 
+		        d.target.x + "," + 
+		        d.target.y;
+		});
+
+		node
+		    .attr("transform", function(d) { 
+				return "translate(" + d.x + "," + d.y + ")"; });
+	}
+
+
+
+//The first line declares the function name (click). Then we select the node that we’ve clicked on and then the associated text before we begin the declaration for our transition with the following;
+//Then we define the new properties that will be in place after the transition. We move the text’s x position (.attr("x", 22)), make the text fill steel blue (.style("fill", "steelblue")), set the stroke around the edge of the text light steel blue (.style("stroke", "lightsteelblue")), set that stroke to half a pixel wide (.style("stroke-width", ".5px")) and increase the font size to 20 pixels (.style("font", "20px sans-serif");).
+//Then we do much the same for the circle component of the node. Select it, declare the transition, increase the radius and change the fill colour.
+
+		function click() {
+			d3.select(this).select("text").transition()
+				.duration(750)
+				.attr("x", 26)
+				.style("fill", function(d) { return color_array[d.value]; })
+				//.style("stroke", "darkgreen")
+				.style("stroke-width", "1px")
+				.style("font", "24px sans-serif");
+			d3.select(this).select("circle").transition()
+				.duration(750)
+				.attr("r", 16);
+		}
+		function dblclick() {
+			d3.select(this).select("circle").transition()
+				.duration(750)
+				.attr("r", 6);
+			d3.select(this).select("text").transition()
+				.duration(750)
+				.attr("x", 12)
+				.style("stroke", "none")
+				.style("stroke-width", "1px")
+				.style("fill", "black")
+				.style("font-weight", "bold")
+				.style("font", "10px sans-serif");
+		}
+
+
+	// Add legend	  
+	svg.append("svg:text")
+		   .attr("class", "title")
+		   .attr("x", 100)
+		   .attr("y", 20)
+		   .style("fill", "black")
+		   .text("Books About US Politics");
+	svg.append("svg:text")
+		   .attr("class", "legend")
+		   .attr("x", 100)
+		   .attr("y", 50)
+		   .style("fill", "red")
+		   .text(" - Conservative");
+	svg.append("svg:text")
+		   .attr("class", "legend")
+		   .attr("x", 100)
+		   .attr("y", 70)
+		   .style("fill", "green")
+		   .text(" - Neutral");
+	svg.append("svg:text")
+		   .attr("class", "legend")
+		   .attr("x", 100)
+		   .attr("y", 90)
+		   .style("fill", "blue")
+		   .text(" - Liberal");
+
+	});
+</script>
+
+</body>
+
+</html>
+

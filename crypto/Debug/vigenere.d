@@ -1,0 +1,1 @@
+vigenere.d: ../vigenere.c

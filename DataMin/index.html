@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Adrian's Data Mining Demos</title>
+        <style>
+        </style>
+    </head>
+    <body>
+		<h2>Data Mining Capstone</h2>
+		<h3>Task 1: Topic Mining</h3>
+		<p>The Mining Process consisted on the following sub-tasks:</p>
+		<p>Data collected and hosted by YELP: Academic Dataset, August 2015</p>
+		<p>Filtering: a script written in Python was used to remove all the reviews that did not correspond to restaurants. In order to compare the topics for positive reviews vs negative reviews, two sub-sets were generated filtering by the rating, stars <= 3 was considered 'negative' and stars > 3 'positive'. </p>
+    	<p>Enhancements: the business category attribute was added to the review by joining the reviews to the business data in a Python data structure in memory; in this process, each review was applied to all the sub-categories that the restaurant belongs to (each sub-category corresponds to a specialty or 'cuisine').</p>
+		<p>Formatting for Easy Access: the size of the dataset was reduced by randomly selecting a subset of up to 100,000 reviews. The outputs were stored in CSV format, which is reasonable convenient for tabular data and is easily consumed by most visualization packages, including D3.js.</p>
+		<p>Analysis: the topics were extracted applying Latent Dirichlet Allocation (LDA) and displayed using the Javascript library D3.js, on the following visualizations:</p>
+		<ol>
+			<li>Top 10 topics in reviews. Presented in a <a href="./Cap/t1/js/cluster_radialtree.html?task=1">dendogram (a radial projection of a tree)</a></li>
+			<li>Contrast of the top 10 topics in negative vs positive reviews, also presented in a <a href="./Cap/t1/js/cluster_radialtree.html?task=2">dendogram.</a></li>
+		</ol>
+		<p>Conclusion:</p>
+		<p>The first diagram (top ten topics from all the reviews) does not reveal a definitive latent structure, but it may be argued that each topic is weakly mapping to a type of food, like 'drunk' and 'brewery' in topic 0 suggest that topic 0 may be related to micro-breweries, or 'nachos' and 'margaritas' in topic 7 suggest that it may be associated to Mexican. Because the topics show rather low cohesiveness, more analysis would be necessary to get topics with a definitive meaning. A possible cause is that there are too many signals in the data, so the output reflects a high level of noise. Is possible that the method did not converge to nice result because we are working on a relative small subset of the data. In this case, processing additional samples may be advisable to cause LDA convergence to a stable set of topics. A suggestion in the opposite direction is to improve the cohesiveness of the topics by filtering the dataset and divide it into subsets of data with less latent variables at play, this is what we are showing in the second diagram.</p>
+		<p>The second diagram (negative vs positive reviews) gives away some of the terms that are more relevant to ratings, for example, negative reviews include words like 'drunk' (topic 1), 'burnt' (topic 4) and 'unsanitary' (topic 6); on the other end of the spectrum, the positive review topics contain more reassuring words, like 'good', 'fancy', 'better', 'agree' (topic 0); 'excellent', 'value' in topic 3, or 'faster', 'pleasure' in topic 4.</p>
+		<p/>
+		<p/>
+		<h2>Data Visualization</h2>
+		<h3>Assignment 1: Numerical Data</h3>
+		<p>Data Source: GIS TEMP Data, from NASA</p>
+		<p><a href="./Visual/d3js/assgn1/d3_02_linegraph_assignment1_readme.txt">Mining Proces:</a> The dataset is in CSV format and ploted with D3.js</p>
+		<ol>
+			<li>Earth temperature differece over the last 50 years <a href="./Visual/d3js/assgn1/d3_02_linegraph_assignment1.html">line graph.</a></li>
+		</ol>
+		<h3>Assignment 2: Relational Data (Graphs)</h3>
+		<p>Data Source: Books on US Politics</p>
+		<p><a href="./Visual/d3js/assgn2/polbooks.txt">Mining Proces:</a> The dataset was converted from SGML to TSV and then loaded in D3.js</p>
+		<ol>
+			<li>Books clustered by political orientation (Liberal or Conservative) in a <a href="./Visual/d3js/assgn2/index.html">force layout.</a></li>
+		</ol>
+	</body>
+</html>

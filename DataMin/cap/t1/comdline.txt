@@ -1,0 +1,26 @@
+
+# my own script
+#clear
+#python py27_cleanup.py
+#cat  yelp_academic_dataset_review_sample_100000.txt | more
+
+
+cd /media/coursera/data/source/courses/DataMin/Cap/t1
+
+# output 3 random samples of UP-TO 100,000 reviews
+clear
+python python/py27_processYelpRestaurants.py --sample 
+
+
+# apply topic modeling to the 3 samples
+clear
+## note that relative paths are relative to the current dir, not to the python script location
+python python/py27_ldaTopicModeling.py  -i ./data  -o ./data  -K 100  -featureNum 50000  -displayWN 15  --logging
+
+# visualize 3 samples
+# Right-click on the page and select 'inspect element' to open the Web Kit (debugger)
+chromium-browser --allow-file-access-from-files ./js/cluster_radialtree.html?task=1
+chromium-browser --allow-file-access-from-files ./js/cluster_radialtree.html?task=2
+
+
+

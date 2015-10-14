@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+
+		<title>Dating website</title>
+	<style>
+	 label:hover {font-size:40px}
+	 label{
+			display:inline-block;
+			text-align:right;
+			text-align:top;
+			width:180px;
+			img:10px;
+	 }
+
+	 label:checkbox{width:auto;}
+	 label:radio{width:auto;}
+
+	 fieldset{
+				border:10px solid yellow;
+				background:lightyellow;
+				margin-bottom:10px;
+				width:720px;
+			}
+
+textarea {
+			width:360px;
+			height:50px;
+}
+range{
+
+		text-align:center;
+}
+body{
+		font-family:calibri
+}
+h1{
+font-size:38px;
+}
+	</style>
+</head>
+
+
+<body>
+	<h1>Please Enter Your Details for our Dating Website!</h1>
+
+		<form action="action_page.php" method="post">
+		<fieldset>
+    <legend>Your Face</legend>
+	<p>
+			<label for="img">Your image:</label>
+			<input name="name" type="file"><br>
+			<label for="Image preview">Image preview:</label>
+			<img id="preview">
+	</p>
+		</fieldset>
+
+		<fieldset>
+    <legend>Your General Details</legend>
+	<p>
+			</p><p>
+			<label for="Name">Name:</label>
+			<input name="name" placeholder="Your full name" type="text">
+			</p>
+			<p>
+			<label for="Gender">Gender</label>
+			<input name="Gender" type="radio">Male
+			<input name="Gender" type="radio">Female
+			</p>
+			<p>
+			<label for="age">Age:</label>
+			<input name="age" required="" value="18" type="number">
+			</p>
+			<p>
+			<label for="date of birth">Date of birth:</label>
+			<input name="date" type="date">
+			</p>
+			<p>
+			<label for="color">Favorite color:</label>
+			<input value="#000000" name="name" type="color"><br>
+			</p>
+			<p>
+			<label for="country">Which country:</label>
+					<select type="list" name="country">
+						<option selected="selected"></option>
+						<option value="Germany">Germany</option>
+						<option value="Italy">Italy</option>
+						<option value="Belgium">Belgium</option>
+						<option value="France">France</option>
+						<option value="Netherland">Netherland</option>
+					</select>
+			</p>
+
+	<p></p>
+		</fieldset>
+
+		<fieldset>
+    <legend>Your Indicators</legend>
+	<p>
+			<label for="Height">Height:</label>
+			Short<input min="0" max="100" step="2" value="50" name="Height" type="range">Tall<br>
+			<label for="Salary">Salary:</label>
+			Poor<input min="0" max="100" step="5" value="50" name="salary" type="range">Rich
+	</p>
+	</fieldset>
+
+	<fieldset>
+    <legend>Your Contact Information</legend>
+	<p>
+			<label for="email">Email:</label>
+			<input value="1232131123123" name="email" type="text">
+	</p>
+	<p>
+			<label for="mobile">Mobile:</label>
+			<input value="123123123213123" name="mobile" type="tel">
+	</p>
+		<p>
+			<label for="Address">Address:</label>
+			<textarea name="Address" rows="1" cols="21"></textarea>
+		</p>
+	<p>
+
+			<label for="Method of contact">Method to contact you:</label>
+
+
+							<input name="contact method" value="Email" type="checkbox">Email
+							<input name="contact method" value="Whatsapp" type="checkbox">Whatsapp
+							<input checked="checked" name="contact method" value="In-app chat" type="checkbox">In-app chat
+
+
+	</p>
+	<p></p>
+	</fieldset>
+	<p>
+			<input value="Submit" type="submit">
+
+
+	</p>
+
+</form>
+<script src="Dating%20website_files/dating_web_site.js"></script>
+
+
+
+
+</body></html>

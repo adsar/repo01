@@ -1,0 +1,21 @@
+sudo apt-get install python-nltk python-numpy
+python
+import nltk
+nltk.download('punkt')
+nltk.download() choose corpora stopwords
+remove what you don't want from home/coursera/nltk_data/corpora
+============================
+
+cd /media/coursera/data/as/courses/DataMin/cap/t2
+
+python python/py27_processYelpRestaurants.py --cuisine
+
+# create matrix
+python python/py27_processYelpRestaurants.py --matrix
+
+# visualize matrix
+# Right-click on the page and select 'inspect element' to open the Web Kit (debugger)
+chromium-browser --allow-file-access-from-files ./js/cap_t2_adjmatrix.html
+chromium-browser --allow-file-access-from-files ./js/cap_t2_3_adjmatrix.html
+
+

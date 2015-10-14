@@ -1,0 +1,12 @@
+
+
+
+cd /media/coursera/data/as/courses/DataMin/cap/t3
+
+# result in /media/coursera/data/as/courses/DataMin/cap/t3/data/all/categories/Indian.txt
+
+python python/py27_processYelpRestaurants.py --cuisine
+
+cd /media/coursera/data/as/courses/DataMin/cap/t3/TopMine
+
+./run.sh 

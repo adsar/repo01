@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cluster Dendogram (Radial Tree)</title>
+		<script src="http://d3js.org/d3.v3.js"></script>
+        <!--<script type="text/javascript" src="libnew/d3.v2.min.js"></script>-->
+        <style>
+            svg {
+                border: solid 1px #ccc;
+                font: 14px sans-serif;
+            }
+            .link {
+                fill: none;
+                stroke: #ccc;
+                stroke-width: 1.5px;
+            }
+        </style>
+    </head>
+    <body>
+ 
+        <div id="viz"></div>
+ 		        <div id="result"></div>
+
+        <script type="text/javascript">	
+			var task = 1;
+			var ratingFilter = ['all', 'positive', 'negative']
+
+			// parse url args
+			var str = window.location.search.substring(1); // trims "?" from beginning:
+			if(str.length > 0){
+				str = str.split("=");
+				eval("window." + str[0] + " = " + str[1].split("+").join(" ") + ";");
+			}
+
+			// get the data				
+			if (task == 1){
+				d3.csv("../data/"+ ratingFilter[0] +"/sample_topics.txt", function(error, rowSet0) {
+					var data0 = createTree(ratingFilter[0], rowSet0);			
+					plotDendogram(data0);
+				});
+			} else {
+				d3.csv("../data/"+ ratingFilter[1] +"/sample_topics.txt", function(error, rowSet1) {
+				d3.csv("../data/"+ ratingFilter[2] +"/sample_topics.txt", function(error, rowSet2) {
+					var data1 = createTree(ratingFilter[1], rowSet1);
+					var data2 = createTree(ratingFilter[2], rowSet2);
+
+					var multi = new Node("", 0.0, new Array(), -2);
+					multi.children.push(data1);
+					multi.children.push(data2);
+
+					plotDendogram(multi);
+				});});
+			}
+
+			function Node(n, w, ch, ci) {
+				this.name = n;
+				this.weight = w;
+				this.children = ch;
+				this.colorIndex = ci;
+			}
+
+			function createTree(sampleId, lines){
+				// Compute the distinct nodes from the lines.
+				var topic = new Node(sampleId, 0.0, new Array(), -1);
+				var data = topic;
+
+				lines.forEach(function(line) {
+					if (line.name == "Topic") {
+						if (data.children.length < 10) {
+							topic = new Node(line.weight.trim(), 0.0, new Array(), data.children.length);
+							data.children.push(topic);
+						}			
+					} else {
+						if (topic.children.length < 10 && data.children.length <= 10) {
+							var n = new Node(line.name, +line.weight, null, data.children.length - 1);
+							topic.children.push(n);
+						}
+					}
+				});
+
+				//var jsonStr = JSON.stringify(data);
+				//alert(jsonStr);
+				//var data2 = JSON.parse(jsonStr);
+
+				return data;	
+			}
+
+			function plotDendogram(treeData){
+			    // Create a svg canvas
+			    var vis = d3.select("#viz").append("svg:svg")
+			    .attr("width", 1000)
+			    .attr("height", 1000)
+			    .append("svg:g")
+			    .attr("transform", "translate(500, 500)");  // centre
+	 
+			    // Create a cluster "canvas"
+				// size (total graph angle in grads, radius)
+				var angle = 360;
+				var radius = 400;
+			    var cluster = d3.layout.cluster()
+			    .size([angle, radius]);
+	 
+
+			    var diagonal = d3.svg.diagonal.radial()
+			    .projection(function(d) { return [d.y, d.x  * Math.PI / 180]; });
+
+			    var nodes = cluster.nodes(treeData);
+			    var links = cluster.links(nodes);
+	 
+			    var link = vis.selectAll("pathlink")
+			    .data(links)
+			    .enter().append("svg:path")
+			    .attr("class", "link")
+			    .attr("d", diagonal)
+				.style("visibility", function(d){return (d.source.colorIndex == -2) ? 'hidden' : 'visible';});
+	 
+			    var node = vis.selectAll("g.node")
+			    .data(nodes)
+			    .enter().append("svg:g")
+			    .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + d.y + ")"; })
+	 
+				// function that takes and index and returns a color
+				var color = d3.scale.category10();
+
+			    // Add the dot at every node, darker color for higher weight
+			    node.append("svg:circle")
+			    .attr("r", 3.5)
+				.attr("fill", function(d){ 
+					var c = (d.colorIndex == -2) ? 'white' : (d.colorIndex == -1) ? 'black' : color(d.colorIndex);
+					var hsl = d3.hsl(c);
+					return (d.children != null) ? hsl : hsl.darker(40*d.weight - 1);
+				});
+	 			// Add the label of every node, rotating text according to the angle
+			    node.append("svg:text")
+			    .attr("dx", function(d) { var px = d.x < 180 ? 8 : -8; return d.children != null ? -(1.5+d.name.length/1.4)*px : px;})
+			    .attr("dy", ".31em")
+			    .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
+			    .attr("transform", function(d) { return d.x < 180 ? null : "rotate(180)"; })
+			    .text(function(d) { return d.name; });
+			}
+        </script>
+    </body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html lang="en">
+ 
+<head>
+ 
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="http://getbootstrap.com/examples/justified-nav/justified-nav.css" rel="stylesheet">
+ 
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+ 
+</head>
+ 
+<body>
+ 
+    <div class="container">
+ 
+        <div class="jumbotron">
+ 		<svg id="visualisation" width="1000" height="500"></svg>
+        </div>
+ 
+    </div>
+
+	<style media="screen" type="text/css">
+		.axis path {
+		    fill: none;
+		    stroke: #777;
+		    shape-rendering: crispEdges;
+		}
+		.axis text {
+		    font-family: Lato;
+		    font-size: 13px;
+		}
+		.legend {
+			font-size: 12px;
+		}
+			rect {
+				stroke-width: 2;
+			}
+	</style>
+
+	<script type="text/javascript">
+		var svgContainer = d3.select("#visualisation"),
+		    WIDTH = 1000,
+		    HEIGHT = 500,
+		    MARGINS = {
+			top: 20,
+			right: 20,
+			bottom: 20,
+			left: 50
+		    };
+
+		// Get the data
+		// to run locally and avoid cross domain error, start from terminal:
+		// chromium-browser --allow-file-access-from-files
+		d3.csv("./ExcelFormattedGISTEMPData2CSV.csv", function(error, data) {
+			// d3.csv is just another name for .ajax(), it executes asynchronously
+			// and the data array must be referenced only inside the callback, 
+			// which executes once the data is returned.
+
+			// This is a loop for parsing dates, conversion from string to numeric, 
+			// and handling invalid data.
+			data.forEach(function(d) {
+				//d.Year = +d.Year;
+				//d.Glob = +d.Glob;
+				//console.log(d);
+			});
+
+
+			// Scale the range of the data
+			var xScale = d3.scale.linear()
+				.range([MARGINS.left, WIDTH - MARGINS.right])
+				.domain(d3.extent(data, function(d) { return d.Year; })),
+			yScale = d3.scale.linear()
+				.range([HEIGHT - MARGINS.top, MARGINS.bottom])
+				.domain([d3.min(data, function(d) { return Math.min(d.Glob,d.SHem,d.NHem); }), 
+					d3.max(data, function(d) { return Math.max(d.Glob,d.SHem,d.NHem); })]),
+			xAxis = d3.svg.axis()
+			    	.scale(xScale),	  
+			yAxis = d3.svg.axis()
+				.scale(yScale)
+				.orient("left");
+
+			// Draw the axes
+			svgContainer.append("svg:g")
+				.attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
+				.call(xAxis);
+
+			svgContainer.append("svg:g")
+				.attr("transform", "translate(" + (MARGINS.left) + ",0)")
+				.call(yAxis);
+			
+			// Define functions to help plot the data
+			// D3 provides a API method called d3.svg.line() to draw a line
+			// We specify x and y coordinates for the line as per the xScale and yScale defined earlier.
+			// The function will pass the value from the data into the x and y coords.
+			// The interpolate() method makes the edges curvaceous 
+			var lineGen_Glob = d3.svg.line()
+				.x(function(d) {
+				return xScale(d.Year);})
+				.y(function(d) {
+				return yScale(d.Glob);})
+				.interpolate("basis");
+
+			var lineGen_SHem = d3.svg.line()
+				.x(function(d) {
+				return xScale(d.Year);})
+				.y(function(d) {
+				return yScale(d.SHem);})
+				.interpolate("basis");
+
+			var lineGen_NHem = d3.svg.line()
+				.x(function(d) {
+				return xScale(d.Year);})
+				.y(function(d) {
+				return yScale(d.NHem);})
+				.interpolate("basis");
+
+
+			// by passing data to lineGen(), D3 iterate over the data array 
+			// and return the values to the x() and y() properties
+			// The css style added below to the axis.path 
+			svgContainer.append('svg:path')
+				.attr('d', lineGen_Glob(data))
+				.attr('stroke', 'red')
+				.attr('stroke-width', 2)
+				.attr('fill', 'none');
+
+			svgContainer.append('svg:path')
+				.attr('d', lineGen_NHem(data))
+				.attr('stroke', 'green')
+				.attr('stroke-width', 2)
+				.attr('fill', 'none');
+
+			svgContainer.append('svg:path')
+				.attr('d', lineGen_SHem(data))
+				.attr('stroke', 'blue')
+				.attr('stroke-width', 2)
+				.attr('fill', 'none');
+
+
+			// Add the Legend
+			var legend_left = MARGINS.left + 40,
+				legend_top = 136;
+			var g = svgContainer.append('g').attr("transform" ,"scale(0)"),
+				rect = g.append('rect')
+					.attr('width', 170)
+					.attr('height', 120)
+					.attr('x', legend_left)
+					.attr('y', 100)
+					.style('fill', 'none')
+					.attr('stroke', 'white'),
+				line1 = g.append("line")
+					.attr("x1", legend_left + 25)
+					.attr("y1", legend_top)
+					.attr("x2", legend_left + 40)
+					.attr("y2", legend_top)
+					.attr("stroke-width", 4)
+					.attr("stroke", "red"),
+				line2 = g.append("line")
+					.attr("x1", legend_left + 25)
+					.attr("y1", legend_top + 22)
+					.attr("x2", legend_left + 40)
+					.attr("y2", legend_top + 22)
+					.attr("stroke-width", 4)
+					.attr("stroke", "green"),
+				line3 = g.append("line")
+					.attr("x1", legend_left + 25)
+					.attr("y1", legend_top + 44)
+					.attr("x2", legend_left + 40)
+					.attr("y2", legend_top + 44)
+					.attr("stroke-width", 4)
+					.attr("stroke", "blue"),
+				legend_text  = g.append('foreignObject')
+					.attr('x', legend_left + 50)
+					.attr('y', 105)
+					.attr('width', 100)
+					.attr('height', 80)
+					.append("xhtml:body")
+					.html('<div style="width: 100px; color: red; font-size: 16px; font-weight: bold; text-align: left;">Global</div>'
+						+ '<div style="width: 100px; color: green; font-size: 16px; font-weight: bold; text-align: left;">North Hemi.</div>'
+						+ '<div style="width: 100px; color: blue; font-size: 16px; font-weight: bold; text-align: left;">South Hemi.</div>'
+					);
+
+				var title = g.append('rect')
+					.attr('width', 710)
+					.attr('height', 50)
+					.attr('x', legend_left)
+					.attr('y', 25)
+					.style('fill', 'none')
+					.attr('stroke', 'white'),
+				title_text  = g.append('foreignObject')
+					.attr('x', legend_left + 20)
+					.attr('y', 40)
+					.attr('width', 680)
+					.attr('height', 30)
+					.append("xhtml:body").style("margin","0").style("padding","0")
+					.html('<div style="font-size: 16px; font-weight: bold; text-align: left;">Annual mean Temperature Anomalies vs base period 1951-1980, in 0.01 degrees Celsius</div>'
+					);
+
+
+
+
+				g.transition().duration(500).attr("transform" ,"scale(1)");
+		});
+
+	</script>
+
+</body>
+ 
+</html>

@@ -1,0 +1,442 @@
+source	source_val	target	target_val	value
+1000 Years for Revenge	n	Bush vs. the Beltway	c	1
+1000 Years for Revenge	n	Charlie Wilson's War	c	1
+1000 Years for Revenge	n	Losing Bin Laden	c	1
+1000 Years for Revenge	n	Sleeping With the Devil	n	1
+1000 Years for Revenge	n	The Man Who Warned America	c	1
+1000 Years for Revenge	n	Why America Slept	n	1
+Bush vs. the Beltway	c	Losing Bin Laden	c	1
+Bush vs. the Beltway	c	The Man Who Warned America	c	1
+Bush vs. the Beltway	c	Why America Slept	n	1
+Charlie Wilson's War	c	Sleeping With the Devil	n	1
+Charlie Wilson's War	c	The Man Who Warned America	c	1
+Charlie Wilson's War	c	Ghost Wars	n	1
+Losing Bin Laden	c	The Man Who Warned America	c	1
+Losing Bin Laden	c	A National Party No More	c	1
+Losing Bin Laden	c	Bush Country	c	1
+Losing Bin Laden	c	Dereliction of Duty	c	1
+Losing Bin Laden	c	Legacy	c	1
+Losing Bin Laden	c	Off with Their Heads	c	1
+Losing Bin Laden	c	Persecution	c	1
+Losing Bin Laden	c	Rumsfeld's War	c	1
+Losing Bin Laden	c	Breakdown	c	1
+Losing Bin Laden	c	Betrayal	c	1
+Losing Bin Laden	c	Shut Up and Sing	c	1
+Losing Bin Laden	c	Meant To Be	n	1
+Losing Bin Laden	c	The Right Man	c	1
+Losing Bin Laden	c	Ten Minutes from Normal	c	1
+Losing Bin Laden	c	Hillary's Scheme	c	1
+Losing Bin Laden	c	The French Betrayal of America	c	1
+Losing Bin Laden	c	Tales from the Left Coast	c	1
+Losing Bin Laden	c	Hating America	c	1
+Losing Bin Laden	c	The Third Terrorist	c	1
+Losing Bin Laden	c	Endgame	c	1
+Losing Bin Laden	c	Spin Sisters	c	1
+Sleeping With the Devil	n	The Man Who Warned America	c	1
+Sleeping With the Devil	n	Why America Slept	n	1
+Sleeping With the Devil	n	All the Shah's Men	n	1
+Sleeping With the Devil	n	Dangerous Dimplomacy	c	1
+Sleeping With the Devil	n	The Price of Loyalty	l	1
+Sleeping With the Devil	n	House of Bush, House of Saud	l	1
+The Man Who Warned America	c	Why America Slept	n	1
+The Man Who Warned America	c	Ghost Wars	n	1
+Why America Slept	n	Ghost Wars	n	1
+Why America Slept	n	Dereliction of Duty	c	1
+Why America Slept	n	Off with Their Heads	c	1
+Why America Slept	n	Meant To Be	n	1
+Why America Slept	n	The French Betrayal of America	c	1
+Why America Slept	n	The Third Terrorist	c	1
+Why America Slept	n	Dangerous Dimplomacy	c	1
+Ghost Wars	n	Rumsfeld's War	c	1
+Ghost Wars	n	The Price of Loyalty	l	1
+Ghost Wars	n	Rise of the Vulcans	c	1
+Ghost Wars	n	Against All Enemies	l	1
+Ghost Wars	n	Disarming Iraq	l	1
+A National Party No More	c	Bush Country	c	1
+A National Party No More	c	Dereliction of Duty	c	1
+A National Party No More	c	Legacy	c	1
+A National Party No More	c	Off with Their Heads	c	1
+A National Party No More	c	Persecution	c	1
+A National Party No More	c	Rumsfeld's War	c	1
+A National Party No More	c	Ten Minutes from Normal	c	1
+A National Party No More	c	Hillary's Scheme	c	1
+A National Party No More	c	The French Betrayal of America	c	1
+A National Party No More	c	Tales from the Left Coast	c	1
+A National Party No More	c	Hating America	c	1
+A National Party No More	c	Endgame	c	1
+A National Party No More	c	Spin Sisters	c	1
+A National Party No More	c	The Death of Right and Wrong	c	1
+A National Party No More	c	Useful Idiots	c	1
+A National Party No More	c	Let Freedom Ring	c	1
+A National Party No More	c	Bias	c	1
+A National Party No More	c	Deliver Us from Evil	c	1
+A National Party No More	c	Give Me a Break	c	1
+A National Party No More	c	The Enemy Within	c	1
+A National Party No More	c	The Real America	c	1
+A National Party No More	c	Who's Looking Out for You?	c	1
+A National Party No More	c	The Official Handbook Vast Right Wing Conspiracy	c	1
+A National Party No More	c	Power Plays	n	1
+Bush Country	c	Legacy	c	1
+Bush Country	c	Off with Their Heads	c	1
+Bush Country	c	Rumsfeld's War	c	1
+Bush Country	c	Ten Minutes from Normal	c	1
+Bush Country	c	Hating America	c	1
+Bush Country	c	Spin Sisters	c	1
+Bush Country	c	Give Me a Break	c	1
+Bush Country	c	The Official Handbook Vast Right Wing Conspiracy	c	1
+Bush Country	c	Arrogance	c	1
+Bush Country	c	The Perfect Wife	n	1
+Bush Country	c	The Bushes	c	1
+Bush Country	c	Things Worth Fighting For	c	1
+Bush Country	c	Surprise, Security, the American Experience	n	1
+Bush Country	c	Allies	c	1
+Dereliction of Duty	c	Legacy	c	1
+Dereliction of Duty	c	Off with Their Heads	c	1
+Dereliction of Duty	c	Breakdown	c	1
+Dereliction of Duty	c	Betrayal	c	1
+Dereliction of Duty	c	The Right Man	c	1
+Dereliction of Duty	c	Hillary's Scheme	c	1
+Dereliction of Duty	c	Useful Idiots	c	1
+Dereliction of Duty	c	Let Freedom Ring	c	1
+Dereliction of Duty	c	Bias	c	1
+Dereliction of Duty	c	Slander	c	1
+Dereliction of Duty	c	The Savage Nation	c	1
+Dereliction of Duty	c	Fighting Back	c	1
+Legacy	c	Off with Their Heads	c	1
+Legacy	c	Persecution	c	1
+Legacy	c	Rumsfeld's War	c	1
+Legacy	c	Shut Up and Sing	c	1
+Legacy	c	Ten Minutes from Normal	c	1
+Legacy	c	Hillary's Scheme	c	1
+Legacy	c	The French Betrayal of America	c	1
+Legacy	c	Endgame	c	1
+Legacy	c	Spin Sisters	c	1
+Legacy	c	Dangerous Dimplomacy	c	1
+Legacy	c	The Official Handbook Vast Right Wing Conspiracy	c	1
+Legacy	c	Arrogance	c	1
+Legacy	c	Things Worth Fighting For	c	1
+Legacy	c	We Will Prevail	c	1
+Off with Their Heads	c	Persecution	c	1
+Off with Their Heads	c	Rumsfeld's War	c	1
+Off with Their Heads	c	Breakdown	c	1
+Off with Their Heads	c	Shut Up and Sing	c	1
+Off with Their Heads	c	Meant To Be	n	1
+Off with Their Heads	c	Tales from the Left Coast	c	1
+Off with Their Heads	c	Hating America	c	1
+Off with Their Heads	c	The Death of Right and Wrong	c	1
+Off with Their Heads	c	Useful Idiots	c	1
+Off with Their Heads	c	Those Who Trespass	c	1
+Off with Their Heads	c	Slander	c	1
+Off with Their Heads	c	The Savage Nation	c	1
+Off with Their Heads	c	Deliver Us from Evil	c	1
+Off with Their Heads	c	Give Me a Break	c	1
+Off with Their Heads	c	Who's Looking Out for You?	c	1
+Off with Their Heads	c	Power Plays	n	1
+Off with Their Heads	c	Arrogance	c	1
+Off with Their Heads	c	Hollywood Interrupted	c	1
+Off with Their Heads	c	Fighting Back	c	1
+Persecution	c	Shut Up and Sing	c	1
+Persecution	c	Dangerous Dimplomacy	c	1
+Persecution	c	The Death of Right and Wrong	c	1
+Persecution	c	Deliver Us from Evil	c	1
+Persecution	c	The Enemy Within	c	1
+Persecution	c	The Real America	c	1
+Persecution	c	Who's Looking Out for You?	c	1
+Persecution	c	Arrogance	c	1
+Persecution	c	The Faith of George W Bush	c	1
+Rumsfeld's War	c	The Third Terrorist	c	1
+Rumsfeld's War	c	Endgame	c	1
+Rumsfeld's War	c	Rise of the Vulcans	c	1
+Breakdown	c	Betrayal	c	1
+Breakdown	c	Fighting Back	c	1
+Shut Up and Sing	c	Arrogance	c	1
+The Right Man	c	Fighting Back	c	1
+The Right Man	c	We Will Prevail	c	1
+The Right Man	c	Bush at War	c	1
+Ten Minutes from Normal	c	Hating America	c	1
+Ten Minutes from Normal	c	Deliver Us from Evil	c	1
+Ten Minutes from Normal	c	The Perfect Wife	n	1
+Ten Minutes from Normal	c	The Bushes	c	1
+Ten Minutes from Normal	c	Why Courage Matters	c	1
+Ten Minutes from Normal	c	The Faith of George W Bush	c	1
+Hillary's Scheme	c	Tales from the Left Coast	c	1
+The French Betrayal of America	c	The Third Terrorist	c	1
+The French Betrayal of America	c	Deliver Us from Evil	c	1
+The French Betrayal of America	c	Allies	c	1
+Tales from the Left Coast	c	Spin Sisters	c	1
+Tales from the Left Coast	c	The Death of Right and Wrong	c	1
+Tales from the Left Coast	c	Useful Idiots	c	1
+Tales from the Left Coast	c	Arrogance	c	1
+Tales from the Left Coast	c	Hollywood Interrupted	c	1
+Hating America	c	Endgame	c	1
+Hating America	c	Deliver Us from Evil	c	1
+Hating America	c	Arrogance	c	1
+Hating America	c	Why Courage Matters	c	1
+The Third Terrorist	c	Deliver Us from Evil	c	1
+Endgame	c	Deliver Us from Evil	c	1
+Endgame	c	The Official Handbook Vast Right Wing Conspiracy	c	1
+Endgame	c	Arrogance	c	1
+Endgame	c	Why Courage Matters	c	1
+Spin Sisters	c	Deliver Us from Evil	c	1
+Spin Sisters	c	Give Me a Break	c	1
+Spin Sisters	c	Arrogance	c	1
+Spin Sisters	c	Hollywood Interrupted	c	1
+All the Shah's Men	n	The Great Unraveling	l	1
+All the Shah's Men	n	American Dynasty	l	1
+The Price of Loyalty	l	House of Bush, House of Saud	l	1
+The Price of Loyalty	l	Rise of the Vulcans	c	1
+The Price of Loyalty	l	The Great Unraveling	l	1
+The Price of Loyalty	l	Rogue Nation	l	1
+The Price of Loyalty	l	The Sorrows of Empire	l	1
+The Price of Loyalty	l	Big Lies	l	1
+The Price of Loyalty	l	The Lies of George W. Bush	l	1
+The Price of Loyalty	l	Worse Than Watergate	l	1
+The Price of Loyalty	l	Plan of Attack	n	1
+The Price of Loyalty	l	Bush at War	c	1
+The Price of Loyalty	l	Bushwomen	l	1
+The Price of Loyalty	l	The Bubble of American Supremacy	l	1
+The Price of Loyalty	l	The Politics of Truth	l	1
+The Price of Loyalty	l	Fanatics and Fools	l	1
+The Price of Loyalty	l	Bushwhacked	l	1
+The Price of Loyalty	l	Lies and the Lying Liars Who Tell Them	l	1
+The Price of Loyalty	l	Had Enough?	l	1
+The Price of Loyalty	l	Dude, Where's My Country?	l	1
+House of Bush, House of Saud	l	The Bushes	c	1
+House of Bush, House of Saud	l	Big Lies	l	1
+House of Bush, House of Saud	l	The Lies of George W. Bush	l	1
+House of Bush, House of Saud	l	Worse Than Watergate	l	1
+House of Bush, House of Saud	l	Plan of Attack	n	1
+House of Bush, House of Saud	l	Bush at War	c	1
+House of Bush, House of Saud	l	The New Pearl Harbor	l	1
+House of Bush, House of Saud	l	The Politics of Truth	l	1
+House of Bush, House of Saud	l	The Exception to the Rulers	l	1
+The Death of Right and Wrong	c	Useful Idiots	c	1
+Useful Idiots	c	Bias	c	1
+Useful Idiots	c	Slander	c	1
+Useful Idiots	c	The Savage Nation	c	1
+Useful Idiots	c	Arrogance	c	1
+The O'Reilly Factor	c	Let Freedom Ring	c	1
+The O'Reilly Factor	c	Those Who Trespass	c	1
+The O'Reilly Factor	c	Bias	c	1
+The O'Reilly Factor	c	Slander	c	1
+The O'Reilly Factor	c	The Savage Nation	c	1
+Let Freedom Ring	c	Those Who Trespass	c	1
+Let Freedom Ring	c	Bias	c	1
+Let Freedom Ring	c	Slander	c	1
+Let Freedom Ring	c	The Savage Nation	c	1
+Let Freedom Ring	c	Deliver Us from Evil	c	1
+Let Freedom Ring	c	The Real America	c	1
+Let Freedom Ring	c	Who's Looking Out for You?	c	1
+Those Who Trespass	c	Give Me a Break	c	1
+Those Who Trespass	c	Arrogance	c	1
+Bias	c	Slander	c	1
+Bias	c	Arrogance	c	1
+Slander	c	The Savage Nation	c	1
+The Savage Nation	c	Deliver Us from Evil	c	1
+The Savage Nation	c	The Enemy Within	c	1
+Deliver Us from Evil	c	Give Me a Break	c	1
+Deliver Us from Evil	c	The Enemy Within	c	1
+Deliver Us from Evil	c	Who's Looking Out for You?	c	1
+Deliver Us from Evil	c	The Official Handbook Vast Right Wing Conspiracy	c	1
+Deliver Us from Evil	c	Arrogance	c	1
+Deliver Us from Evil	c	Why Courage Matters	c	1
+Deliver Us from Evil	c	Hollywood Interrupted	c	1
+Give Me a Break	c	Arrogance	c	1
+Give Me a Break	c	Hollywood Interrupted	c	1
+The Enemy Within	c	The Real America	c	1
+The Enemy Within	c	Arrogance	c	1
+The Real America	c	We Will Prevail	c	1
+The Official Handbook Vast Right Wing Conspiracy	c	Arrogance	c	1
+Power Plays	n	Arrogance	c	1
+Power Plays	n	Buck Up Suck Up	l	1
+Arrogance	c	Hollywood Interrupted	c	1
+The Perfect Wife	n	The Bushes	c	1
+The Perfect Wife	n	The Faith of George W Bush	c	1
+The Bushes	c	The Faith of George W Bush	c	1
+The Bushes	c	Rise of the Vulcans	c	1
+The Bushes	c	American Dynasty	l	1
+The Bushes	c	Plan of Attack	n	1
+Things Worth Fighting For	c	Rise of the Vulcans	c	1
+Surprise, Security, the American Experience	n	Allies	c	1
+Surprise, Security, the American Experience	n	Rise of the Vulcans	c	1
+Surprise, Security, the American Experience	n	America Unbound	l	1
+Surprise, Security, the American Experience	n	The Choice	l	1
+Surprise, Security, the American Experience	n	Colossus	n	1
+Allies	c	Rise of the Vulcans	c	1
+Allies	c	America Unbound	l	1
+Why Courage Matters	c	Plan of Attack	n	1
+We Will Prevail	c	The Faith of George W Bush	c	1
+Rise of the Vulcans	c	America Unbound	l	1
+Rise of the Vulcans	c	The Choice	l	1
+Rise of the Vulcans	c	Soft Power	l	1
+Rise of the Vulcans	c	Colossus	n	1
+Rise of the Vulcans	c	Bush at War	c	1
+Rise of the Vulcans	c	Disarming Iraq	l	1
+Downsize This!	l	Stupid White Men	l	1
+Downsize This!	l	Rush Limbaugh Is a Big Fat Idiot	l	1
+Downsize This!	l	The Best Democracy Money Can Buy	l	1
+Downsize This!	l	The Culture of Fear	l	1
+Downsize This!	l	Dude, Where's My Country?	l	1
+Stupid White Men	l	The Best Democracy Money Can Buy	l	1
+Stupid White Men	l	The Culture of Fear	l	1
+Stupid White Men	l	Bushwhacked	l	1
+Stupid White Men	l	Lies and the Lying Liars Who Tell Them	l	1
+Stupid White Men	l	Dude, Where's My Country?	l	1
+Rush Limbaugh Is a Big Fat Idiot	l	Lies and the Lying Liars Who Tell Them	l	1
+Rush Limbaugh Is a Big Fat Idiot	l	We're Right They're Wrong	l	1
+Rush Limbaugh Is a Big Fat Idiot	l	Shrub	l	1
+The Best Democracy Money Can Buy	l	The Culture of Fear	l	1
+The Best Democracy Money Can Buy	l	Bushwhacked	l	1
+The Best Democracy Money Can Buy	l	Dude, Where's My Country?	l	1
+The Best Democracy Money Can Buy	l	Thieves in High Places	l	1
+The Culture of Fear	l	Dude, Where's My Country?	l	1
+America Unbound	l	The Choice	l	1
+America Unbound	l	The Great Unraveling	l	1
+America Unbound	l	Rogue Nation	l	1
+America Unbound	l	Soft Power	l	1
+America Unbound	l	Colossus	n	1
+America Unbound	l	The Sorrows of Empire	l	1
+The Choice	l	Rogue Nation	l	1
+The Choice	l	Soft Power	l	1
+The Choice	l	Colossus	n	1
+The Choice	l	Disarming Iraq	l	1
+The Great Unraveling	l	Rogue Nation	l	1
+The Great Unraveling	l	The Sorrows of Empire	l	1
+The Great Unraveling	l	American Dynasty	l	1
+The Great Unraveling	l	Big Lies	l	1
+The Great Unraveling	l	The Lies of George W. Bush	l	1
+The Great Unraveling	l	Plan of Attack	n	1
+The Great Unraveling	l	The Bubble of American Supremacy	l	1
+The Great Unraveling	l	Bushwhacked	l	1
+The Great Unraveling	l	Disarming Iraq	l	1
+The Great Unraveling	l	Lies and the Lying Liars Who Tell Them	l	1
+The Great Unraveling	l	The Buying of the President 2004	l	1
+The Great Unraveling	l	Perfectly Legal	l	1
+The Great Unraveling	l	Hegemony or Survival	l	1
+The Great Unraveling	l	Had Enough?	l	1
+The Great Unraveling	l	What Liberal Media?	l	1
+The Great Unraveling	l	The Clinton Wars	l	1
+The Great Unraveling	l	Dude, Where's My Country?	l	1
+The Great Unraveling	l	Thieves in High Places	l	1
+Rogue Nation	l	The Future of Freedom	n	1
+Rogue Nation	l	Empire	n	1
+Soft Power	l	Against All Enemies	l	1
+Colossus	n	Empire	n	1
+The Sorrows of Empire	l	Against All Enemies	l	1
+The Sorrows of Empire	l	American Dynasty	l	1
+The Sorrows of Empire	l	Worse Than Watergate	l	1
+The Sorrows of Empire	l	Hegemony or Survival	l	1
+Against All Enemies	l	American Dynasty	l	1
+Against All Enemies	l	Big Lies	l	1
+Against All Enemies	l	The Lies of George W. Bush	l	1
+Against All Enemies	l	Worse Than Watergate	l	1
+Against All Enemies	l	Plan of Attack	n	1
+Against All Enemies	l	Bush at War	c	1
+Against All Enemies	l	The New Pearl Harbor	l	1
+Against All Enemies	l	Bushwomen	l	1
+Against All Enemies	l	The Bubble of American Supremacy	l	1
+Against All Enemies	l	Living History	l	1
+Against All Enemies	l	The Politics of Truth	l	1
+Against All Enemies	l	Fanatics and Fools	l	1
+American Dynasty	l	Big Lies	l	1
+American Dynasty	l	The Lies of George W. Bush	l	1
+American Dynasty	l	Worse Than Watergate	l	1
+American Dynasty	l	Plan of Attack	n	1
+American Dynasty	l	The New Pearl Harbor	l	1
+American Dynasty	l	Bushwomen	l	1
+American Dynasty	l	The Bubble of American Supremacy	l	1
+American Dynasty	l	The Politics of Truth	l	1
+American Dynasty	l	Bushwhacked	l	1
+American Dynasty	l	Disarming Iraq	l	1
+American Dynasty	l	Lies and the Lying Liars Who Tell Them	l	1
+American Dynasty	l	MoveOn's 50 Ways to Love Your Country	l	1
+American Dynasty	l	The Buying of the President 2004	l	1
+American Dynasty	l	Perfectly Legal	l	1
+American Dynasty	l	Hegemony or Survival	l	1
+American Dynasty	l	The Exception to the Rulers	l	1
+American Dynasty	l	Freethinkers	l	1
+Big Lies	l	The Lies of George W. Bush	l	1
+Big Lies	l	Worse Than Watergate	l	1
+Big Lies	l	The Politics of Truth	l	1
+Big Lies	l	Fanatics and Fools	l	1
+Big Lies	l	Bushwhacked	l	1
+Big Lies	l	Lies and the Lying Liars Who Tell Them	l	1
+Big Lies	l	Perfectly Legal	l	1
+Big Lies	l	Freethinkers	l	1
+Big Lies	l	Had Enough?	l	1
+Big Lies	l	It's Still the Economy, Stupid!	l	1
+Big Lies	l	We're Right They're Wrong	l	1
+Big Lies	l	What Liberal Media?	l	1
+Big Lies	l	The Clinton Wars	l	1
+Big Lies	l	Weapons of Mass Deception	l	1
+Big Lies	l	Dude, Where's My Country?	l	1
+Big Lies	l	Thieves in High Places	l	1
+The Lies of George W. Bush	l	Worse Than Watergate	l	1
+The Lies of George W. Bush	l	The New Pearl Harbor	l	1
+The Lies of George W. Bush	l	Bushwomen	l	1
+The Lies of George W. Bush	l	The Politics of Truth	l	1
+The Lies of George W. Bush	l	Bushwhacked	l	1
+The Lies of George W. Bush	l	MoveOn's 50 Ways to Love Your Country	l	1
+The Lies of George W. Bush	l	The Buying of the President 2004	l	1
+The Lies of George W. Bush	l	The Exception to the Rulers	l	1
+The Lies of George W. Bush	l	Weapons of Mass Deception	l	1
+The Lies of George W. Bush	l	Dude, Where's My Country?	l	1
+Worse Than Watergate	l	Plan of Attack	n	1
+Worse Than Watergate	l	Bush at War	c	1
+Worse Than Watergate	l	The New Pearl Harbor	l	1
+Worse Than Watergate	l	Bushwomen	l	1
+Worse Than Watergate	l	The Politics of Truth	l	1
+Worse Than Watergate	l	Fanatics and Fools	l	1
+Worse Than Watergate	l	Bushwhacked	l	1
+Worse Than Watergate	l	The Exception to the Rulers	l	1
+Worse Than Watergate	l	Freethinkers	l	1
+Plan of Attack	n	Bush at War	c	1
+Plan of Attack	n	The Politics of Truth	l	1
+Plan of Attack	n	Fanatics and Fools	l	1
+Plan of Attack	n	Bushwhacked	l	1
+Plan of Attack	n	Lies and the Lying Liars Who Tell Them	l	1
+Bushwomen	l	Bushwhacked	l	1
+Bushwomen	l	The Exception to the Rulers	l	1
+Bushwomen	l	Thieves in High Places	l	1
+Living History	l	Bushwhacked	l	1
+Living History	l	Lies and the Lying Liars Who Tell Them	l	1
+Living History	l	The Clinton Wars	l	1
+The Politics of Truth	l	Bushwhacked	l	1
+Fanatics and Fools	l	Bushwhacked	l	1
+Fanatics and Fools	l	MoveOn's 50 Ways to Love Your Country	l	1
+Fanatics and Fools	l	Thieves in High Places	l	1
+Bushwhacked	l	Lies and the Lying Liars Who Tell Them	l	1
+Bushwhacked	l	MoveOn's 50 Ways to Love Your Country	l	1
+Bushwhacked	l	The Buying of the President 2004	l	1
+Bushwhacked	l	Perfectly Legal	l	1
+Bushwhacked	l	It's Still the Economy, Stupid!	l	1
+Bushwhacked	l	What Liberal Media?	l	1
+Bushwhacked	l	The Clinton Wars	l	1
+Bushwhacked	l	Dude, Where's My Country?	l	1
+Bushwhacked	l	Thieves in High Places	l	1
+Bushwhacked	l	Shrub	l	1
+Lies and the Lying Liars Who Tell Them	l	Perfectly Legal	l	1
+Lies and the Lying Liars Who Tell Them	l	Had Enough?	l	1
+Lies and the Lying Liars Who Tell Them	l	The Clinton Wars	l	1
+Lies and the Lying Liars Who Tell Them	l	Thieves in High Places	l	1
+Lies and the Lying Liars Who Tell Them	l	Shrub	l	1
+MoveOn's 50 Ways to Love Your Country	l	Weapons of Mass Deception	l	1
+The Buying of the President 2004	l	Perfectly Legal	l	1
+Hegemony or Survival	l	The Exception to the Rulers	l	1
+Hegemony or Survival	l	Dude, Where's My Country?	l	1
+The Exception to the Rulers	l	Weapons of Mass Deception	l	1
+The Exception to the Rulers	l	Thieves in High Places	l	1
+Had Enough?	l	It's Still the Economy, Stupid!	l	1
+Had Enough?	l	Dude, Where's My Country?	l	1
+Had Enough?	l	Buck Up Suck Up	l	1
+It's Still the Economy, Stupid!	l	We're Right They're Wrong	l	1
+It's Still the Economy, Stupid!	l	What Liberal Media?	l	1
+It's Still the Economy, Stupid!	l	Shrub	l	1
+It's Still the Economy, Stupid!	l	Buck Up Suck Up	l	1
+We're Right They're Wrong	l	Buck Up Suck Up	l	1
+What Liberal Media?	l	The Clinton Wars	l	1
+What Liberal Media?	l	Thieves in High Places	l	1
+Weapons of Mass Deception	l	Thieves in High Places	l	1
+Dude, Where's My Country?	l	Thieves in High Places	l	1
+Thieves in High Places	l	Shrub	l	1
+The Future of Freedom	n	Empire	n	1

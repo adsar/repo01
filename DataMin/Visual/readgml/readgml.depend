@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1439051737 source:/home/adrian/source/courses/DataMin/Visual/readgml/readgml.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"network.h"
+
+1439051470 /home/adrian/source/courses/DataMin/Visual/readgml/network.h
+
+1439138146 source:/home/adrian/source/courses/DataMin/Visual/readgml/main.c
+	<stdio.h>
+	<stdlib.h>
+	"network.h"
+	"readgml.h"
+
+1439041569 /home/adrian/source/courses/DataMin/Visual/readgml/readgml.h
+	<stdio.h>
+	"network.h"
+

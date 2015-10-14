@@ -1,0 +1,212 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>D3 Adjacency Matrix</title>
+	<meta charset="utf-8" />
+</head>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="http://d3js.org/queue.v1.min.js" type="text/javascript"></script>
+<style>
+	.tick line {
+		shape-rendering: crispEdges;
+		stroke: #000;
+	}
+	line.minor {
+		stroke: #777;
+		stroke-dasharray: 2,2;
+	}
+	path.domain {
+		fill: none;
+		stroke: black;
+	}
+
+	.axis path,
+	.axis line {
+		fill: none;
+		stroke: white;
+		shape-rendering: crispEdges;
+	}
+
+	.axis text {
+		font-family: sans-serif;
+		font-size: 11px;
+}
+</style>
+
+<body onload="adj_matrix()">
+
+<div id="vizcontainer" style="width:750px; height:750px; border:1px lightgray solid;">
+	<svg style="width:700px; height:700px; border:0px lightgray solid;" />
+
+	<div style="width:750px; color:black; font-family: sans-serif; font-size:16px; font-weight:bold; text-align:center;">
+		Similarity Matrix - k-means (10)
+	</div>
+</div>
+
+<footer>
+
+<script>
+// Notes:
+// we are going to convert the nodes txt file into a normal node list, 
+// with the name in the 'id' field (unecessarily coplex, but generic.)
+// I'm using conventional c-style for, because js 'for(a in nodes)' 
+// is too misleading (a gets an int index, not the ojects)
+
+
+function adj_matrix() {
+	
+	// names of the columns/rows in the adj matrix
+	var nodelist = "../data/all/matrix/cuisine_indices.txt";
+
+	// adj matrix, contains no names of rows or columns, just the weights
+	//var edgelist = "../data/all/matrix/cuisine_sim_matrix_noIdf_lda_cosine_allTopics.csv";
+	var edgelist = "../data/all/matrix/cuisine_sim_matrix_idf_lda_cosine_allTopics.csv";
+	
+	// cluster to which each cuisine belongs to (the cluster is a int)
+	var clusterlist = "../data/all/matrix/cuisine_sim_matrix_idf_lda_cosine_allTopics_kmeans_10.txt";
+	//var clusterlist = "../data/all/matrix/cuisine_sim_matrix_idf_lda_cosine_allTopics_kmeans_10.txt";
+
+
+	queue()
+	.defer(d3.text, nodelist)
+	.defer(d3.text, edgelist)
+	.defer(d3.text, clusterlist)
+	.await(function(error, file1, file2, file3) { createAdjacencyMatrix(file1, file2, file3); });
+
+	function createAdjacencyMatrix(text1,text2,text3) {
+		// nodes contains no column titles 
+		// just the names of the adj matrix rows/columns
+		var nodes = d3.csv.parseRows(text1).map(function(row, i) {
+			// build whole object, you cant add properties later
+			return {id: i, name: row[0], clusterId: null, sortKey: null};  // (json syntax)
+		});
+		var n = nodes.length;
+
+		// adj matrix contains no names of rows or columns, just the weights of the edges
+		var adjMatrix = d3.csv.parseRows(text2).map(function(row) {
+			return row.map(function(value) {return +value;});
+		});
+
+		// clusters contains no column titles 
+		// just the id of the cluster that each row belongs to
+		d3.csv.parseRows(text3).forEach(function(row, i, clusters) {
+			nodes[i].clusterId = +row[0];
+			nodes[i].sortKey = row[0] +'-'+ nodes[i].Id;
+		});
+
+		// create a hash table of edges from the adj matrix 
+		var edgeHash = {};
+		for (i = 0; i < n; i++) {	
+			for (j = 0; j < n; j++) {		
+				var id = i + "-" + j;
+				var edge = {source: nodes[i].name, 
+							target: nodes[j].name,
+							weight: adjMatrix[i][j]}; 
+				edgeHash[id] = edge;
+			}
+		}
+
+		// Sort the nodes by cluster id in ascending order:
+		nodes.sort(function(a, b) {
+			return (a.sortKey > b.sortKey) ? 1 : (a.sortKey < b.sortKey) ? -1 : 0;
+		});
+
+		// create a list of all possible edges 
+		// ordered by row and, inside row, by column 
+		// formatted as 'grid' objects for D3 precessing convenience
+		// (in this case the input file contains all the edges, 
+		// because we are reading a dense matrix,
+		// but in a normal graph the edge list is not complete)
+		grid = [];
+		for (i = 0; i < n; i++) {	
+			for (j = 0; j < n; j++) {
+				// create the cell:
+				// set the cell position in the grid according to the sorting order
+				// note that row number (i) correstponds to the Y coordinate in the chart
+				// the clusterId of the row is added for clolor coding
+				var id = nodes[i].id + "-" + nodes[j].id; // use the original order stored in 'id' to access the weight
+				var cell = {x: j, y: i, 											// position
+							weight: (edgeHash[id]) ? edgeHash[id].weight : 0,		// opacity
+							clusterId: nodes[i].clusterId,							// color
+					};
+
+				grid.push(cell);
+			}
+		}
+
+
+		// size of the matrix cells
+		var w = 15;
+		var h = 15;
+		// function that takes and index and returns a color
+		var color = d3.scale.category10();
+
+		// draw the matrix
+		d3.select("svg")
+		// matrix:
+			.append("g")
+			.attr("transform", "translate(125,125)")  // top-left corner
+			.attr("id", "adjacencyG")
+			.selectAll("rect")
+			.data(grid)
+			.enter()
+		// matrix cells:
+			.append("rect")
+  			// size of the cells
+			.attr("width", w) 
+			.attr("height", h)
+			// position of the cells
+			.attr("x", function (d) {return d.x * w}) 
+			.attr("y", function (d) {return d.y * h})
+			.style("stroke", "black")
+			.style("stroke-width", "0px")
+			.style("fill", function (d) {return color(d.clusterId)})
+			.style("fill-opacity", function (d) {return d.weight * 1.5})
+			.on("mouseover", gridOver);
+ 
+		// draw the axes
+		var scaleSize = nodes.length * w;
+		var names = nodes.map(function (el) {return el.name});
+		var nameScale = d3.scale.ordinal()
+						.domain(names)
+						.rangePoints([0,scaleSize],1);
+		/*
+		# ordinal.rangePoints(interval[, padding])
+		Sets the output range from the specified continuous interval. The array interval contains two elements 
+		representing the minimum and maximum numeric value. 	
+		This interval is subdivided into n evenly-spaced points, where n is the number of (unique) values in the input domain. 
+		The first and last point may be offset from the edge of the interval according to the specified padding, which defaults to zero. 
+		The padding is expressed as a multiple of the spacing between points. A reasonable value is 1.0, such that the first and last point 
+		will be offset from the minimum and maximum value by half the distance between points.
+		*/
+
+		xAxis = d3.svg.axis()    
+				.scale(nameScale)
+				.orient("top")
+				.tickSize(1); // length of the marks on the axes
+
+		yAxis = d3.svg.axis().scale(nameScale).orient("left").tickSize(1);
+
+		d3.select("#adjacencyG").append("g")
+		.attr("class", "axis")  //Assign "axis" class
+		.call(xAxis)
+		.selectAll("text")
+		.style("text-anchor", "")
+		.attr("transform", "translate(+0,-5) rotate(-60)");
+
+		d3.select("#adjacencyG").append("g")
+		.attr("class", "axis")  //Assign "axis" class
+		.call(yAxis);
+
+		function gridOver(d,i) {
+			d3.selectAll("rect")
+			.style("stroke-width", function (p) {return p.x == d.x || p.y == d.y ? "1px" : "0px"})
+		}
+	}
+}
+</script>
+
+</footer>
+
+</body>
+
+</html>
