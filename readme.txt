@@ -42,8 +42,10 @@ now the repo is in good shape, we can branch master now and checkin our sources 
 There is no need to pull if all the VMs share the same working folder, on the other hand if we have commited checkins from another host, in that case the sintax is: 
 git pull repo01 master
 
-copy the sources to the subfolder in the repo folder
+- now, copy the sources to the subfolder in the repo folder and check them in, for example:
 git add --all <subfolder>
+git reset HEAD *~
+git reset HEAD *.ipynb
 git commit -m "comment"
 git push
 
