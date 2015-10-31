@@ -25,10 +25,17 @@ git remote add repo01  https://github.com/adsar/repo01.git
 git config user.email "mr.sarno2@gmail.com"
 git config user.name "Adrian Sarno"
 
-There is no need to clone the repo because the hostalready did that.
+There is no need to clone the repo because the virtualization host already did that.
 
-We have to be mindful that we are sharing the same git working directory with other VMs, this means that the other VM must sotre its work safely before we can work in this one, if other VM has branched the code and it has uncommited work in the working folder, then we should go aback to that VM and commit it.For the above reason, we may want to avoid branches when we work with a working dir shared by several VMs. Check if the working dir is branched and don't continue until is back in master.For example:
-git branches
+We have to be mindful that we are sharing the same git working directory with other VMs, 
+this means that the other VM must store its work safely before we can work in this one, 
+if other VM has branched the code and it has uncommited work in the working folder, 
+then we should go aback to that VM and commit it. 
+For the above reason, we may want to avoid branches when we work with a working dir shared by several VMs. 
+Check if the working dir is branched and don't continue until is back in master. 
+For example:
+
+git branch
 *capdev
 master
 git status
@@ -39,7 +46,8 @@ git checkout master
 git merge capdev
 
 now the repo is in good shape, we can branch master now and checkin our sources in a project branch
-There is no need to pull if all the VMs share the same working folder, on the other hand if we have commited checkins from another host, in that case the sintax is: 
+There is no need to pull if all the VMs share the same working folder, 
+on the other hand if we have commited checkins from another host, in that case the sintax is: 
 git pull repo01 master
 
 - now, copy the sources to the subfolder in the repo folder and check them in, for example:
@@ -47,6 +55,6 @@ git add --all <subfolder>
 git reset HEAD *~
 git reset HEAD *.ipynb
 git commit -m "comment"
-git push
+git push repo01
 
 
