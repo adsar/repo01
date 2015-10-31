@@ -57,4 +57,12 @@ git reset HEAD *.ipynb
 git commit -m "comment"
 git push repo01
 
+If your branch is already the one you need to checkin, for example:
+git branch
+capdev
+*master
+
+then you can got directly:
+ git rm --cached *.ipynb
+ git commit -m "updated repo git readme"
 
