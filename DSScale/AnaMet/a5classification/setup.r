@@ -1,0 +1,9 @@
+#install.packages("plyr_1.8.1.tar.gz",repos="http://cran.r-project.org/src/contrib/Archive/plyr",type="source")
+
+install.packages("caret")
+install.packages("rpart")
+install.packages("tree")
+install.packages("randomForest")
+install.packages("e1071")
+
+install.packages("ggplot2")
