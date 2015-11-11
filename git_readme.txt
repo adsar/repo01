@@ -13,14 +13,16 @@ Use Cases
 ---------
 1 - Add an existing subfolder to the git repo from the VM
 
-The VM has access to the working directory,through the share folder, chi
+The VM has access to the working directory through the share folder.
 But, the VM has not access to the remote git configuration value:
 - the url of the remote github repo
 - the user name and password 
 So we need to configure all that.
-First, check if there is a remove: git remote -v
-if repo01 is a remote, remove it: git remote rm repo01
+First, check if there is a remote: git remote -v
+if repo01 is a remote, remove it (relax, this just removes a local configuration line so you can recreate it): 
+git remote rm repo01
 
+re-create the remote config:
 git remote add repo01  https://github.com/adsar/repo01.git
 git config user.email "mr.sarno2@gmail.com"
 git config user.name "Adrian Sarno"
@@ -28,10 +30,16 @@ git config user.name "Adrian Sarno"
 There is no need to clone the repo because the virtualization host already did that.
 
 We have to be mindful that we are sharing the same git working directory with other VMs, 
-this means that the other VM must store its work safely before we can work in this one, 
+this means that the work done in this working directory by other VM will show up in ours.
+Ideally, we shuold hhave commited the work done in the other VM safely before witching to work in this one, 
 if other VM has branched the code and it has uncommited work in the working folder, 
-then we should go aback to that VM and commit it. 
-For the above reason, we may want to avoid branches when we work with a working dir shared by several VMs. 
+otherwise we can commit it from here. Remember that both the Working Directory and the Local Repository
+are the same accross all the VM's, because they are stored in the host shared folder,
+only the configuration values about the remote GitHub repo, that are stored outside the Local Repository
+are not shared across VMs.
+
+We may want to avoid branches when we work with a working dir shared by several VMs, just to avoid confussion, because branches tend to be project specific, and so are VMs, so if we check out a branch in one VM, we may
+forget to merge it to master before switching to work in other VM and then we start working on the wrong branch.
 Check if the working dir is branched and don't continue until is back in master. 
 For example:
 
@@ -62,7 +70,8 @@ git branch
 capdev
 *master
 
-then you can got directly:
+then you can go directly to:
+ git rm --cached *~
  git rm --cached *.ipynb
  git commit -m "updated repo git readme"
 
