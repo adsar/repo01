@@ -1,0 +1,39 @@
+cd ~
+cp /media/sf_as/repo01/BData/Hadoop/wordcount_mapper.py wordcount_mapper.py
+cp /media/sf_as/repo01/BData/Hadoop/wordcount_reducer.py wordcount_reducer.py
+
+
+ cat testfile*|./wordcount_mapper.py|sort|./wordcount_reducer.py
+
+
+-- note that the mapper and reducer only have permission to run inside hadoop from the home dir
+
+hdfs dfs -rmdir /user/cloudera/output_new
+
+hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar    -input /user/cloudera/input    -output /user/cloudera/output_new    -file /home/cloudera/wordcount_mapper.py -mapper wordcount_mapper.py    -file /home/cloudera/wordcount_reducer.py -reducer wordcount_reducer.py
+
+
+hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar    -input /user/cloudera/input    -output /user/cloudera/output_new    -file /home/cloudera/wordcount_mapper.py -mapper wordcount_mapper.py    -file /home/cloudera/wordcount_reducer.py -reducer wordcount_reducer.py  -numReduceTasks 0
+
+
+hdfs dfs -getmerge /user/cloudera/output_new_0/* wordcount_num0_output.txt
+
+
+
+
+hdfs dfs -rmdir /user/cloudera/output_join
+
+hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar \
+   -input /user/cloudera/input \
+   -output /user/cloudera/output_join \   
+   -file /home/cloudera/join1_mapper.py \   
+   -mapper join1_mapper.py \   
+   -file /home/cloudera/join1_reducer.py
+   -reducer join1_reducer.py
+
+hdfs dfs -rm /user/cloudera/output_join2/*
+
+hdfs dfs -rmdir /user/cloudera/output_join2
+
+hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar -input /user/cloudera/input2 -output /user/cloudera/output_join2 -file /home/cloudera/join2_mapper.py -mapper join2_mapper.py -file /home/cloudera/join2_reducer.py -reducer join2_reducer.py -numReduceTasks=1
+
