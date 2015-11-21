@@ -75,3 +75,26 @@ then you can go directly to:
  git rm --cached *.ipynb
  git commit -m "updated repo git readme"
 
+
+Getting the latest version of the sources
+-----------------------------------------
+if you want to get the latest version of your code
+from your local repository back to you working folder:
+- this will unstage everything, but will not update your working dir:
+git reset HEAD
+
+- this will unstage everything and will update your working dir:
+git reset --hard HEAD
+
+
+notice that:
+- is not possible to scope the reset providing a path, it affects the whole repo!!
+- there is no - in HEAD
+
+
+
+
+
+
+
+
