@@ -1,0 +1,38 @@
+def split_fileA(line):
+    words = line.split(",")
+    count = int(words[1])
+    return (words[0], count)
+
+def split_fileB(line):
+    fields = line.split(",")
+    words = fields[0].split(" ")
+    return (words[1], words[0] + " " + fields[1])
+
+#test_line = "w,1"
+#split_fileA(test_line)
+
+fileA = sc.textFile("input/join1_FileA.txt")
+fileA.collect()
+fileA_data = fileA.map(split_fileA)
+
+fileB_joined_fileA = fileB_data.join(fileA_data)
+fileB_joined_fileA.collect()
+
+#--------------------------------------------------------
+
+# 1. read the data into a collection and store it partitions in data nodes
+show_views_file = sc.textFile("input2/join2_gennum?.txt")
+show_views_file.take(2)
+
+# 2. define a function to be applied on one element of a collection
+def split_show_views(line):
+    fields = line.split(",")
+    return (fields[0], fields[1])
+
+#3. send to code (function) to the data (each partition on the data nosed)
+show_views = show_views_file.map(split_show_views)
+show_views.take(2)
+
+
+show_channel_file = sc.textFile("input2/join2_genchan?.txt")
+

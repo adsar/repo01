@@ -1,0 +1,13 @@
+gedit join1_mapper.py
+
+gedit join1_reducer.py
+
+gedit join1_FileA.txt
+
+gedit join1_FileB.txt
+
+chmod +x join1_mapper.py
+
+chmod +x join1_reducer.py
+
+cat join1_File*.txt|./join1_mapper.py|sort|./join1_reducer.py

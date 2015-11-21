@@ -1,0 +1,48 @@
+# BigD - Hadoop intro course - w5: Spark - assgn2
+#--------------------------------------------------------
+
+## Number of Views for show
+# 1. read the data into a collection and store it partitions in data nodes
+show_views_file = sc.textFile("input2/join2_gennum?.txt")
+show_views_file.take(2)
+
+# 2. define a function to be applied on one element of a collection
+def split_show_views(line):
+    fields = line.split(",")
+    return (fields[0], fields[1])
+
+#3. send to code (function) to the data (each partition on the data nosed)
+show_views = show_views_file.map(split_show_views)
+show_views.take(2)
+
+## Channel for show
+show_channel_file = sc.textFile("input2/join2_genchan?.txt")
+show_channel_file.take(2)
+
+def split_show_channel(line):
+    fields = line.split(",")
+    return (fields[0], fields[1])
+
+show_channel = show_channel_file.map(split_show_channel)
+show_channel.take(2)
+
+## Join, group by channel, and sum
+show_channel_joined_views = show_channel.join(show_views)
+show_channel_joined_views.take(2)
+
+def extract_channel_views(show_views_channel): 
+    value_fields = show_views_channel[1]
+    channel = value_fields[0]
+    views = value_fields[1]
+    return (channel, views)
+
+channel_views = show_channel_joined_views.map(extract_channel_views)
+channel_views.take(2)
+
+def sum_views(a, b):
+    return int(a) + int(b)
+
+channel_views.reduceByKey(sum_views).collect()
+
+
+
