@@ -92,9 +92,22 @@ notice that:
 - there is no - in HEAD
 
 
+Creating a repository for publication
+------------------------------------------------
+- Create empty repo in github
+- git clone https://github.com/adsar/kalman.git
+- copy contents to local folder
+- git add *
+- git status
+- git -rm --cached *.png
+- git config user.name "Adrian Sarno"
+- git config user.email "mr.sarno2@gmail.com"
+- git remote add kalman  https://github.com/adsar/kalman.git
+- git push kalman
 
-
-
-
+Discard changes unstaged changes from working folder
+----------------------------------------------------
+git stash save --keep-index
+git stash drop
 
 

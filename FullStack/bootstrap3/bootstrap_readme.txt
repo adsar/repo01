@@ -22,17 +22,21 @@ Full Stack JS frameworks:
 Full-Stack
  - There is almost no full-stack developers, everybody is either front or back end.
 
-
-Node
- - the JavaScript engine of the Chome browser.
+Less and Sass
+- preprocessors, input a macro language, to generate CSS
+Less code is more compact and is used to write the source code of bootstrap css.
 
 
 Web Tools
 ---------
-Toolset to automate build, test, install.
-The whole toolset is developed in JavaScript and runs on node on command line.
+
+Node and NPM
+ - Node: the JavaScript engine of the Chome browser.
+ - NPM: Node package manager
 
 Yeoman toolset
+Toolset to automate build, test, install.
+The whole toolset is developed in JavaScript and runs on node, from command line.
 To create build workflows.
 - Yo: web app scafolding
 - Bower: package manager for the web.
